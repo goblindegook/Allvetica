@@ -1,0 +1,17 @@
+{
+    "name": "Allvetica",
+    "version": "1.0",
+    "description": "Replaces Arial with Helvetica on all sites.",
+    "content_scripts": [
+        {
+            "matches": [ "http://*/*", "https://*/*" ],
+            "js": [ "jquery.js", "allvetica.js" ],
+            "all_frames": true
+        }
+    ],
+    "icons": {
+         "16": "icon16.png",
+         "48": "icon48.png",
+        "128": "icon128.png"
+    }
+}
