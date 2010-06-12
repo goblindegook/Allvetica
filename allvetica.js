@@ -1,4 +1,4 @@
-$('*').each(
+$('body').find('*').each(
     function (i) {
         if ($(this).css('font-family')) {
             var fontFamily = $(this).css('font-family');
