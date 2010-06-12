@@ -4,8 +4,13 @@ Version: 1.1
 
 Google Chrome extension to replace Arial on every page with the superior Helvetica typeface.
 
-Author site:
-http://goblindegook.net/
+Please note that Helvetica is not packaged with this extension, and you must have it on your computer for correct font replacement.
 
-Extension Gallery URL:
+Arial versus Helvetica:
+http://www.ilovetypography.com/2007/10/06/arial-versus-helvetica/
+
+Google Chrome Extension Gallery URL:
 https://chrome.google.com/extensions/detail/acgbckcjlpneapibaifnhpjnnakijihm
+
+github Project URL:
+http://github.com/goblindegook/Allvetica
