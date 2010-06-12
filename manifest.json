@@ -1,11 +1,11 @@
 {
     "name": "Allvetica",
-    "version": "1.2",
+    "version": "1.2.1",
     "description": "Replace Arial with Helvetica on all pages.",
     "content_scripts": [
         {
                "matches": [ "http://*/*", "https://*/*" ],
-                    "js": [ "allvetica.js" ],
+                    "js": [ "jquery.js", "allvetica.js" ],
             "all_frames": true,
                 "run_at": "document_idle"
         }
