@@ -1,6 +1,6 @@
 Name: Allvetica
 Author: Luís Rodrigues
-Version: 1.2.1
+Version: 1.3
 
 Google Chrome extension to replace Arial on every page with the superior Helvetica typeface. It scans the DOM CSS of the document for the 'font' and 'font-family' attributes and rewrites them.
 

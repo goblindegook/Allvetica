@@ -1,0 +1,32 @@
+<html>
+<head>
+    <title>Allvetica Settings</title>
+    <link rel="stylesheet" href="allvetica.css" type="text/css" title="Default">
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="options.js"></script>
+</head>
+<body onLoad="load_options();">
+    <div id="options">
+    
+    <div id="header">
+        <img src="icon128.png" title="Allvetica" id="logo">
+        <h1>Allvetica</h1>
+    </div>
+    
+    <fieldset>
+    <legend>Font Replacement</legend>
+    
+    <p>
+        <input type="checkbox" id="replace_arial" name="replace_arial"
+            onChange="" disabled checked>
+        <label for="replace_arial" class="disabled">Replace Arial</label></p>
+        
+        <input type="checkbox" id="replace_comic_sans" name="replace_comic_sans"
+            onChange="save_options();">
+        <label for="replace_comic_sans" disabled>Replace Comic Sans</label></p>
+
+    </fieldset>
+
+    </div>
+</body>
+</html>
