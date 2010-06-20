@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<script type="text/javascript">
+
+if (!localStorage.allvetica) {
+    localStorage.allvetica = JSON.stringify( {
+        replaceComicSans: false
+    } );
+}
+
+chrome.extension.onRequest.addListener(
+    function (request, sender, sendResponse) {
+        if (request.data == "options") {
+            var options = JSON.parse( localStorage.allvetica );
+            sendResponse( { options: options } );
+        } else {
+            sendResponse( {} );
+        }
+    }
+);
+
+</script>
+</html>

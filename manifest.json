@@ -5,11 +5,12 @@
     "content_scripts": [
         {
                "matches": [ "http://*/*", "https://*/*" ],
-                    "js": [ "jquery.js", "options.js", "allvetica.js" ],
+                    "js": [ "jquery.js", "allvetica.js" ],
             "all_frames": true,
                 "run_at": "document_idle"
         }
     ],
+    "background_page": "background.html",
     "options_page": "options.html",
     "icons": {
          "16": "icon16.png",

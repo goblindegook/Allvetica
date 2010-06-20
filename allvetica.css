@@ -3,22 +3,23 @@ body {
     font-size: 80%;
 }
 
-#options {
-    width: 400px;
+header,
+.options {
+    width: 380px;
     margin: 10px auto;
 }
 
-#header {
+header {
     text-align: center;
 }
 
-#header h1 {
+header h1 {
     font-weight: normal;
     font-size: 300%;
     margin: 0 0 20px 0;
 }
 
-#options fieldset {
+.options fieldset {
     border: 1px solid #aaa;
     margin-bottom: 15px;
     -webkit-border-radius: 5px;
