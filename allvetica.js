@@ -3,12 +3,16 @@
 chrome.extension.sendRequest(
     { data: 'options' },
     function (response) {
-        options = response.options;
-        if (options.replaceComicSans) {
-            replaceFont( /Arial|Comic Sans( MS)?/gi, 'Helvetica' );
-        } else {
-            replaceFont( /Arial/i, 'Helvetica' );
-        }
+        var options = response.options;
+        
+        var helvetica = (options.useHelveticaNeue)
+            ? '\'Helvetica Neue\''
+            : 'Helvetica';
+        
+        if (options.replaceComicSans)
+            replaceFont( /[\'\"]?(Arial|Comic Sans( MS)?)[\'\"]?/gi, helvetica );
+        else
+            replaceFont( /[\'\"]?Arial[\'\"]?/i, helvetica );
     }
 );
 
