@@ -5,8 +5,8 @@ chrome.extension.sendRequest(
     function (response) {
         var options = response.options;
         
-        var helvetica = (options.useHelveticaNeue)
-            ? '\'Helvetica Neue\''
+        var helvetica = (options.useNeueHelvetica)
+            ? '\'Neue Helvetica\''
             : 'Helvetica';
         
         if (options.replaceComicSans)
