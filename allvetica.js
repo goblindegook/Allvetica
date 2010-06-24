@@ -10,9 +10,9 @@ chrome.extension.sendRequest(
             : 'Helvetica';
         
         if (options.replaceComicSans)
-            replaceFont( /[\'\"]?(Arial|Comic Sans( MS)?)[\'\"]?/gi, helvetica );
+            replaceFont(/[\'\"]?(Arial|Comic Sans( MS)?)[\'\"]?/gi, helvetica);
         else
-            replaceFont( /[\'\"]?Arial[\'\"]?/i, helvetica );
+            replaceFont(/[\'\"]?Arial[\'\"]?/i, helvetica);
     }
 );
 
@@ -30,10 +30,12 @@ function replaceFont (toReplace, replacement) {
                     var cssRule = styleSheet.cssRules[j];
                     
                     // Replace in font-family attribute
-                    cssRule.style.fontFamily = cssRule.style.fontFamily.replace( toReplace, replacement );
+                    if (cssRule.style.fontFamily.match(toReplace))
+                        cssRule.style.fontFamily = cssRule.style.fontFamily.replace(toReplace, replacement);
         
                     // Replace in font attribute
-                    cssRule.style.font = cssRule.style.font.replace( toReplace, replacement );
+                    if (cssRule.style.font.match(toReplace))
+                        cssRule.style.font = cssRule.style.font.replace(toReplace, replacement);
                 }
             }
         }
@@ -42,12 +44,14 @@ function replaceFont (toReplace, replacement) {
     // Adjust tag styles and attributes
     $('body').find('*').each(
         function (i) {            
-            $(this).css('font-family', $(this).css('font-family').replace( toReplace, replacement ));
-                    
-            $(this).css('font', $(this).css('font').replace( toReplace, replacement ));
+            if ($(this).css('font-family').match(toReplace))
+                $(this).css('font-family', $(this).css('font-family').replace(toReplace, replacement));
             
-            if (this.tagName == 'FONT')
-                $(this).attr('face', $(this).attr('face').replace( toReplace, replacement ));
+            if ($(this).css('font').match(toReplace))
+                $(this).css('font', $(this).css('font').replace(toReplace, replacement));
+            
+            if (this.tagName == 'FONT' && $(this).attr('face').match(toReplace))
+                $(this).attr('face', $(this).attr('face').replace(toReplace, replacement));
         }
     );
     
