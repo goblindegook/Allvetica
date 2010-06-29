@@ -4,7 +4,7 @@ chrome.extension.sendRequest(
     { data: 'options' },
     function (response) {
         var options = response.options;
-        
+                
         var helvetica = (options.useNeueHelvetica)
             ? '\'Helvetica Neue\''
             : 'Helvetica';
@@ -13,6 +13,9 @@ chrome.extension.sendRequest(
             replaceFont(/[\'\"]?(Arial|Comic Sans( MS)?)[\'\"]?/gi, helvetica);
         else
             replaceFont(/[\'\"]?Arial[\'\"]?/i, helvetica);
+            
+        if (options.optimizeLegibility)
+            $('body').css('text-rendering', 'optimizeLegibility');
     }
 );
 

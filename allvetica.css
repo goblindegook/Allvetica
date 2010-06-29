@@ -1,6 +1,7 @@
 body {
     font-family: Helvetica, sans-serif;
     font-size: 80%;
+    text-rendering: optimizeLegibility;
 }
 
 header,

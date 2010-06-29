@@ -9,6 +9,9 @@ function saveOptions () {
     options.useNeueHelvetica
         = $('#use_neue_helvetica:checked').val() != null;
     
+    options.optimizeLegibility
+        = $('#optimize_legibility:checked').val() != null;
+    
     localStorage.allvetica = JSON.stringify( options );
 }
 
@@ -17,4 +20,6 @@ function loadOptions () {
     
     $('#replace_comic_sans').attr('checked', options.replaceComicSans);
     $('#use_neue_helvetica').attr('checked', options.useNeueHelvetica);
+    $('#optimize_legibility').attr('checked', options.optimizeLegibility);
 }
+
