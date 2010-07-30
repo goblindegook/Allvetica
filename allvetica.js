@@ -9,11 +9,16 @@ chrome.extension.sendRequest(
             ? '\'Helvetica Neue\''
             : 'Helvetica';
         
-        if (options.replaceComicSans)
-            replaceFont(/[\'\"]?(Arial|Comic Sans( MS)?)[\'\"]?/gi, helvetica);
-        else
-            replaceFont(/[\'\"]?Arial[\'\"]?/i, helvetica);
-            
+        // Search regexp source
+        var fontSearch = "[\\'\\\"]?(Arial";
+        
+        if (options.replaceComicSans)   fontSearch += "|Comic Sans( MS| 2010)?"; 
+        if (options.replaceMarkerFelt)  fontSearch += "|Marker Felt";
+        
+        fontSearch += ")[\\'\\\"]?";
+        
+        replaceFont(new RegExp(fontSearch, "gi"), helvetica);
+        
         if (options.optimizeLegibility)
             $('body').css('text-rendering', 'optimizeLegibility');
     }
