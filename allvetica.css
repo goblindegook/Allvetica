@@ -29,3 +29,18 @@ header h1 {
 .disabled {
     color: #aaa;
 }
+
+.options hr {
+    border: none;
+    border-top: 1px solid #aaa;
+}
+
+.options div.selection label {
+    display: inline-block;
+    width: 200px;
+    text-align: right;
+}
+
+.options div.selection select {
+    text-align: left;
+}
