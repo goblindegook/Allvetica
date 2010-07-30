@@ -5,7 +5,7 @@ DESCRIPTION
 
 Google Chrome extension to replace Arial on every page with the superior Helvetica or Helvetica Neue typefaces. It scans the DOM CSS of the document for the 'font' and 'font-family' attributes and rewrites them.
 
-Please note that Helvetica is not packaged with this extension, and you must have it on your computer for correct font replacement.
+Please note that Helvetica is not packaged with this extension, and that you must have it on your computer for correct font replacement.
 
 LINKS
 
@@ -20,6 +20,9 @@ http://www.ilovetypography.com/2007/10/06/arial-versus-helvetica/
 
 I'm Comic Sans, Asshole:
 http://www.mcsweeneys.net/links/monologues/15comicsans.html
+
+GNU FreeFont
+http://www.gnu.org/software/freefont/
 
 LICENSE
 

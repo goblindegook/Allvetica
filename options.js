@@ -8,9 +8,9 @@ function saveOptions () {
 
     options.replaceMarkerFelt
         = $('#replace_marker_felt:checked').val() != null;
-
-    options.useNeueHelvetica
-        = $('#use_neue_helvetica:checked').val() != null;
+            
+    options.replacement
+        = $('#replacement option:selected').val();
     
     options.optimizeLegibility
         = $('#optimize_legibility:checked').val() != null;
@@ -20,10 +20,10 @@ function saveOptions () {
 
 function loadOptions () {
     var options = JSON.parse( localStorage.allvetica );
-    
+
+    $('#replacement option').filter('[value="' + options.replacement + '"]').attr('selected', true);    
     $('#replace_comic_sans').attr('checked', options.replaceComicSans);
     $('#replace_marker_felt').attr('checked', options.replaceMarkerFelt);
-    $('#use_neue_helvetica').attr('checked', options.useNeueHelvetica);
     $('#optimize_legibility').attr('checked', options.optimizeLegibility);
 }
 

@@ -5,10 +5,6 @@ chrome.extension.sendRequest(
     function (response) {
         var options = response.options;
                 
-        var helvetica = (options.useNeueHelvetica)
-            ? '\'Helvetica Neue\''
-            : 'Helvetica';
-        
         // Search regexp source
         var fontSearch = "[\\'\\\"]?(Arial";
         
@@ -17,10 +13,11 @@ chrome.extension.sendRequest(
         
         fontSearch += ")[\\'\\\"]?";
         
-        replaceFont(new RegExp(fontSearch, "gi"), helvetica);
+        // Replacement        
+        replaceFont(new RegExp(fontSearch, "gi"), "'" + options.replacement + "'");
         
         if (options.optimizeLegibility)
-            $('body').css('text-rendering', 'optimizeLegibility');
+            $('body').css('text-rendering', 'optimizeLegibility');            
     }
 );
 
