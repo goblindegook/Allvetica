@@ -4,7 +4,7 @@ chrome.extension.sendRequest(
     { data: 'options' },
     function (response) {
         var options = response.options;
-                
+        
         // Search regexp source
         var fontSearch = "[\\'\\\"]?(Arial";
         
@@ -14,10 +14,10 @@ chrome.extension.sendRequest(
         fontSearch += ")[\\'\\\"]?";
         
         // Replacement        
-        replaceFont(new RegExp(fontSearch, "gi"), "'" + options.replacement + "'");
+        replaceFont(new RegExp(fontSearch, "gi"), options.replacement);
         
         if (options.optimizeLegibility)
-            $('body').css('text-rendering', 'optimizeLegibility');            
+            $('body').css('text-rendering', 'optimizeLegibility');
     }
 );
 

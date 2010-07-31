@@ -1,0 +1,48 @@
+body {
+    font-family: Helvetica, sans-serif;
+    font-size: 80%;
+    text-rendering: optimizeLegibility;
+}
+
+header,
+.options {
+    width: 380px;
+    margin: 10px auto;
+}
+
+header {
+    text-align: center;
+}
+
+header h1 {
+    font-weight: normal;
+    font-size: 300%;
+    margin: 0 0 20px 0;
+}
+
+.options fieldset {
+    border: 1px solid #aaa;
+    margin-bottom: 15px;
+    padding-left: 20px;
+    padding-right: 20px;
+    -webkit-border-radius: 5px;
+}
+
+.disabled {
+    color: #aaa;
+}
+
+.options hr {
+    border: none;
+    border-top: 1px solid #aaa;
+}
+
+.options div.selection label {
+    display: inline-block;
+    width: 180px;
+    text-align: left;
+}
+
+.options div.selection select {
+    text-align: left;
+}

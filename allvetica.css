@@ -1,46 +1,27 @@
-body {
-    font-family: Helvetica, sans-serif;
-    font-size: 80%;
-    text-rendering: optimizeLegibility;
+@font-face {  
+  font-family: FreeSans;  
+  src: local('FreeSans'), url('chrome-extension://acgbckcjlpneapibaifnhpjnnakijihm/OTF/FreeSans.otf');  
+  font-weight: normal;
+  font-style: normal;
 }
 
-header,
-.options {
-    width: 380px;
-    margin: 10px auto;
+@font-face {  
+  font-family: FreeSans;  
+  src: local('FreeSans'), url('chrome-extension://acgbckcjlpneapibaifnhpjnnakijihm/OTF/FreeSansOblique.otf');  
+  font-weight: normal;
+  font-style: italic;
 }
 
-header {
-    text-align: center;
+@font-face {  
+  font-family: FreeSans;  
+  src: local('FreeSans'), url('chrome-extension://acgbckcjlpneapibaifnhpjnnakijihm/OTF/FreeSansBold.otf');  
+  font-weight: bold;
+  font-style: normal;
 }
 
-header h1 {
-    font-weight: normal;
-    font-size: 300%;
-    margin: 0 0 20px 0;
-}
-
-.options fieldset {
-    border: 1px solid #aaa;
-    margin-bottom: 15px;
-    -webkit-border-radius: 5px;
-}
-
-.disabled {
-    color: #aaa;
-}
-
-.options hr {
-    border: none;
-    border-top: 1px solid #aaa;
-}
-
-.options div.selection label {
-    display: inline-block;
-    width: 200px;
-    text-align: right;
-}
-
-.options div.selection select {
-    text-align: left;
+@font-face {  
+  font-family: FreeSans;  
+  src: local('FreeSans'), url('chrome-extension://acgbckcjlpneapibaifnhpjnnakijihm/OTF/FreeSansBoldOblique.otf');  
+  font-weight: bold;
+  font-style: italic;
 }
