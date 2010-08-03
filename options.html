@@ -7,7 +7,7 @@
     <script type="text/javascript" src="options.js"></script>
 </head>
 
-<body onLoad='loadOptions();'>    
+<body onLoad='initOptions();'>
 
     <header>
         <img src="icon128.png" title="Allvetica" id="logo">
@@ -18,16 +18,20 @@
     <fieldset>
         <legend>Font Replacement</legend>
         
-        <!--
-        <p><input type="checkbox" id="replace_arial" name="replace_arial" onChange="saveOptions();" disabled checked>
-            <label for="replace_arial" class="disabled">Replace Arial</label></p>
-        -->
-        
-        <p><input type="checkbox" id="replace_comic_sans" name="replace_comic_sans" onChange="saveOptions();">
-            <label for="replace_comic_sans">Replace Comic Sans</label></p>
+        <table>
+        <tr>
+        <td><input type="checkbox" id="replace_arial" name="replace_arial" onChange="saveOptions();" disabled checked>
+            <label for="replace_arial" class="disabled">Replace Arial</label></td>
+        <td><input type="checkbox" id="replace_marker_felt" name="replace_marker_felt" onChange="saveOptions();">
+            <label for="replace_marker_felt">Replace Marker Felt</label></td>
+        </tr><tr>
 
-        <p><input type="checkbox" id="replace_marker_felt" name="replace_marker_felt" onChange="saveOptions();">
-            <label for="replace_marker_felt">Replace Marker Felt</label></p>
+        <td><input type="checkbox" id="replace_comic_sans" name="replace_comic_sans" onChange="saveOptions();">
+            <label for="replace_comic_sans">Replace Comic Sans</label></td>
+        <td><input type="checkbox" id="replace_papyrus" name="replace_papyrus" onChange="saveOptions();">
+            <label for="replace_papyrus">Replace Papyrus</label></td>
+        </tr>
+        </table>
         
         <hr>
 
@@ -37,7 +41,7 @@
             <select id="replacement" name="replacement" onChange="saveOptions();">
                 <option>Helvetica</option>
                 <option>Helvetica Neue</option>
-                <option>FreeSans</option>
+                <option class="embeddable">FreeSans</option>
             </select>
         </p>
         

@@ -1,5 +1,5 @@
 body {
-    font-family: Helvetica, sans-serif;
+    font-family: 'Helvetica Neue', Helvetica, sans-serif;
     font-size: 80%;
     text-rendering: optimizeLegibility;
 }
@@ -26,6 +26,18 @@ header h1 {
     padding-left: 20px;
     padding-right: 20px;
     -webkit-border-radius: 5px;
+}
+
+.options fieldset table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+}
+
+.options fieldset td {
+    width: 50%;
+    margin: 0;
+    padding: 5px 0 5px;
 }
 
 .disabled {

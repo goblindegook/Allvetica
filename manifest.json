@@ -1,6 +1,6 @@
 {
     "name": "Allvetica",
-    "version": "1.6",
+    "version": "1.7",
     "description": "Protect your delicate typographic sensibilities.",
     "content_scripts": [
         {

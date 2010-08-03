@@ -1,27 +1,29 @@
+/* acgbckcjlpneapibaifnhpjnnakijihm */
+
 @font-face {  
-  font-family: FreeSans;  
-  src: local('FreeSans'), url('chrome-extension://acgbckcjlpneapibaifnhpjnnakijihm/OTF/FreeSans.otf');  
-  font-weight: normal;
-  font-style: normal;
+    font-family: FreeSans;
+    font-style: normal;
+    font-weight: normal;
+    src: local("FreeSans"), url(chrome-extension://acgbckcjlpneapibaifnhpjnnakijihm/OTF/FreeSans.otf) format("opentype");
 }
 
 @font-face {  
-  font-family: FreeSans;  
-  src: local('FreeSans'), url('chrome-extension://acgbckcjlpneapibaifnhpjnnakijihm/OTF/FreeSansOblique.otf');  
-  font-weight: normal;
-  font-style: italic;
+    font-family: FreeSans;
+    font-style: oblique;
+    font-weight: normal;
+    src: local("FreeSans"), url(chrome-extension://acgbckcjlpneapibaifnhpjnnakijihm/OTF/FreeSansOblique.otf) format("opentype");
 }
 
 @font-face {  
-  font-family: FreeSans;  
-  src: local('FreeSans'), url('chrome-extension://acgbckcjlpneapibaifnhpjnnakijihm/OTF/FreeSansBold.otf');  
-  font-weight: bold;
-  font-style: normal;
+    font-family: FreeSans;
+    font-style: normal;
+    font-weight: bold;
+    src: local("FreeSans"), url(chrome-extension://acgbckcjlpneapibaifnhpjnnakijihm/OTF/FreeSansBold.otf) format("opentype");
 }
 
 @font-face {  
-  font-family: FreeSans;  
-  src: local('FreeSans'), url('chrome-extension://acgbckcjlpneapibaifnhpjnnakijihm/OTF/FreeSansBoldOblique.otf');  
-  font-weight: bold;
-  font-style: italic;
+    font-family: FreeSans;
+    font-style: oblique;
+    font-weight: bold;
+    src: local("FreeSans"), url(chrome-extension://acgbckcjlpneapibaifnhpjnnakijihm/OTF/FreeSansBoldOblique.otf) format("opentype");
 }

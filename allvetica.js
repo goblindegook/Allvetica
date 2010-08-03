@@ -10,10 +10,10 @@ chrome.extension.sendRequest(
         
         if (options.replaceComicSans)   fontSearch += "|Comic Sans( MS| 2010)?"; 
         if (options.replaceMarkerFelt)  fontSearch += "|Marker Felt";
+        if (options.replacePapyrus)     fontSearch += "|Papyrus";
         
         fontSearch += ")[\\'\\\"]?";
         
-        // Replacement        
         replaceFont(new RegExp(fontSearch, "gi"), options.replacement);
         
         if (options.optimizeLegibility)
@@ -21,7 +21,6 @@ chrome.extension.sendRequest(
     }
 );
 
-// Replace font on the DOM CSS
 
 function replaceFont (toReplace, replacement) {
 
@@ -46,16 +45,21 @@ function replaceFont (toReplace, replacement) {
         }
     }
     
-    // Adjust tag styles and attributes
-    $('body').find('*').each(
-        function (i) {            
+    // Adjust inline styles
+    $('body').find('*[style*="font"]').each(
+        function (i) {
             if ($(this).css('font-family').match(toReplace))
                 $(this).css('font-family', $(this).css('font-family').replace(toReplace, replacement));
             
             if ($(this).css('font').match(toReplace))
                 $(this).css('font', $(this).css('font').replace(toReplace, replacement));
-            
-            if (this.tagName == 'FONT' && $(this).attr('face').match(toReplace))
+        }
+    );
+
+    // Adjust font tag properties
+    $('body').find('font').each(
+        function (i) {
+            if ($(this).attr('face').match(toReplace))
                 $(this).attr('face', $(this).attr('face').replace(toReplace, replacement));
         }
     );
