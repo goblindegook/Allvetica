@@ -1,7 +1,31 @@
 // options.js
 
+function initOptions () {
+    $('#replacement option').each( function (i) {
+        var fontName = $(this).val();
+        if (!$(this).hasClass('embeddable') && !isFontInstalled( fontName )) {
+            $(this).attr('disabled', 'disabled');
+            $('#warnings')
+                .html('Some font options may be unavailable in your system.')
+                .show();
+            // $(this).remove();
+        }
+    } );
+    
+    var options = JSON.parse( localStorage.allvetica );
+    $('#replacement option').filter('[value="' + options.replacement + '"]').attr('selected', true);    
+    $('#replace_arial').attr('checked', options.replaceArial);
+    $('#replace_comic_sans').attr('checked', options.replaceComicSans);
+    $('#replace_marker_felt').attr('checked', options.replaceMarkerFelt);
+    $('#replace_papyrus').attr('checked', options.replacePapyrus);
+    $('#optimize_legibility').attr('checked', options.optimizeLegibility);
+}
+
 function saveOptions () {
     var options = {};
+
+    options.replaceArial
+        = $('#replace_arial:checked').val() != null;
     
     options.replaceComicSans
         = $('#replace_comic_sans:checked').val() != null;
@@ -19,24 +43,6 @@ function saveOptions () {
         = $('#optimize_legibility:checked').val() != null;
     
     localStorage.allvetica = JSON.stringify( options );
-}
-
-function initOptions () {
-    var options = JSON.parse( localStorage.allvetica );
-
-    $('#replacement option').each( function (i) {
-        var fontName = $(this).val();
-        if (!$(this).hasClass('embeddable') && !isFontInstalled( fontName )) {
-            $(this).attr('disabled', 'disabled');
-            $(this).remove();
-        }
-    } );
-    
-    $('#replacement option').filter('[value="' + options.replacement + '"]').attr('selected', true);    
-    $('#replace_comic_sans').attr('checked', options.replaceComicSans);
-    $('#replace_marker_felt').attr('checked', options.replaceMarkerFelt);
-    $('#replace_papyrus').attr('checked', options.replacePapyrus);
-    $('#optimize_legibility').attr('checked', options.optimizeLegibility);
 }
 
 function isFontInstalled (font, monospace) {
@@ -70,13 +76,6 @@ function isFontInstalled (font, monospace) {
     var matchH  = $('#ftMatch').height();
     
     $('#fontTest').remove();
-
-    /*
-    alert(
-        targetW + 'x' + targetH + '\n' + matchW + 'x' + matchH + '\n'
-        + font + ' exists? ' + (targetW != matchW || targetH != matchH)
-    );
-    */
 
     return (targetW != matchW || targetH != matchH);
 }

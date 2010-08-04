@@ -1,7 +1,17 @@
 body {
-    font-family: 'Helvetica Neue', Helvetica, sans-serif;
+    font-family: 'Helvetica Neue', Helvetica, FreeSans, sans-serif;
     font-size: 80%;
     text-rendering: optimizeLegibility;
+    background-color: #fff;
+}
+
+#warnings {
+    border: 1px solid #aaa;
+    margin-bottom: 15px;
+    padding: 10px 20px;
+    -webkit-border-radius: 5px;
+    display: none;
+    background-color: #ffffe0;
 }
 
 header,
@@ -28,33 +38,29 @@ header h1 {
     -webkit-border-radius: 5px;
 }
 
-.options fieldset table {
-    border-collapse: collapse;
-    width: 100%;
+.options fieldset p {
     margin: 10px 0;
 }
 
-.options fieldset td {
-    width: 50%;
-    margin: 0;
-    padding: 5px 0 5px;
+.options fieldset hr {
+    border: none;
+    border-top: 1px solid #aaa;
+    margin: 5px 0 15px;
+    padding: 0;
+}
+
+.options fieldset .selection label {
+    display: inline-block;
+    width: 180px;
+    text-align: left;
+}
+
+.options fieldset .selection select {
+    text-align: left;
 }
 
 .disabled {
     color: #aaa;
 }
 
-.options hr {
-    border: none;
-    border-top: 1px solid #aaa;
-}
-
-.options div.selection label {
-    display: inline-block;
-    width: 180px;
-    text-align: left;
-}
-
-.options div.selection select {
-    text-align: left;
-}
+.column-2 { -webkit-column-count: 2; }

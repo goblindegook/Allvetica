@@ -5,16 +5,16 @@ chrome.extension.sendRequest(
     function (response) {
         var options = response.options;
         
-        // Search regexp source
-        var fontSearch = "[\\'\\\"]?(Arial";
+        var fonts = [];
+        if (options.replaceArial)       fonts.push("Arial");
+        if (options.replaceComicSans)   fonts.push("Comic Sans( MS| 2010)?");
+        if (options.replaceMarkerFelt)  fonts.push("Marker Felt");
+        if (options.replacePapyrus)     fonts.push("Papyrus");
         
-        if (options.replaceComicSans)   fontSearch += "|Comic Sans( MS| 2010)?"; 
-        if (options.replaceMarkerFelt)  fontSearch += "|Marker Felt";
-        if (options.replacePapyrus)     fontSearch += "|Papyrus";
-        
-        fontSearch += ")[\\'\\\"]?";
-        
-        replaceFont(new RegExp(fontSearch, "gi"), options.replacement);
+        if (fonts) {
+            var fontSearch = "[\\'\\\"]?(" + fonts.join('|') + ")[\\'\\\"]?";
+            replaceFont(new RegExp(fontSearch, "gi"), options.replacement);
+        }
         
         if (options.optimizeLegibility)
             $('body').css('text-rendering', 'optimizeLegibility');
