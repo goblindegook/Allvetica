@@ -46,7 +46,7 @@ function replaceFont (toReplace, replacement) {
     }
     
     // Adjust inline styles
-    $('body').find('*[style*="font"]').each(
+    $('body').find('*').each(
         function (i) {
             if ($(this).css('font-family').match(toReplace))
                 $(this).css('font-family', $(this).css('font-family').replace(toReplace, replacement));
