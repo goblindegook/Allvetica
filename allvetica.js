@@ -11,7 +11,7 @@ chrome.extension.sendRequest(
         if (options.replaceMarkerFelt)  fonts.push("Marker Felt");
         if (options.replacePapyrus)     fonts.push("Papyrus");
         
-        if (fonts) {
+        if (fonts.length) {
             var fontSearch = "[\\'\\\"]?(" + fonts.join('|') + ")[\\'\\\"]?";
             replaceFont(new RegExp(fontSearch, "gi"), options.replacement);
         }
