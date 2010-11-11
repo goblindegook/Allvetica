@@ -13,8 +13,8 @@ chrome.extension.sendRequest(
         
         var replacement = options.replacement;
         
-        if (!replacement && options.replacement_custom_valid) {
-            replacement = options.replacement_custom;
+        if (!replacement && options.replacementCustomValid) {
+            replacement = options.replacementCustom;
         }
         
         if (replacement && fonts.length) {

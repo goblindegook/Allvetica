@@ -32,7 +32,7 @@ function initOptions () {
     $('#optimize_legibility')
         .attr('checked', options.optimizeLegibility);
 
-    $('#replacement_custom').val(options.replacement_custom);
+    $('#replacement_custom').val(options.replacementCustom);
     
     if ($('#replacement option:selected').hasClass('custom')) {
         $('#replacement-advanced').show();
@@ -57,17 +57,17 @@ function saveOptions () {
     }
     
     if (customReplacementFont && customFontInstalled) {
-        options.replacement_custom = customReplacementFont;
-        options.replacement_custom_valid = true;
+        options.replacementCustom = customReplacementFont;
+        options.replacementCustomValid = true;
         
     } else if (customReplacementFont) {
         var previous = JSON.parse( localStorage.allvetica );
-        options.replacement_custom = previous.replacement_custom;
-        options.replacement_custom_valid = true;
+        options.replacementCustom = previous.replacementCustom;
+        options.replacementCustomValid = true;
 
     } else {
-        options.replacement_custom = '';
-        options.replacement_custom_valid = false;
+        options.replacementCustom = '';
+        options.replacementCustomValid = false;
     }
 
     options.replaceArial
