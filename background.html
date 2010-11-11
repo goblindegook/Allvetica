@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <script type="text/javascript" src="jquery.js"></script>
     <script type="text/javascript" src="options.js"></script>
     <script type="text/javascript">
     
     // Default settings
     if (!localStorage.allvetica) {
+    
         var defaultFont = 'Helvetica';
         if (!isFontInstalled( defaultFont ))
             defaultFont = 'FreeSans';
-        
+            
         localStorage.allvetica = JSON.stringify( {
             replaceArial: true,
             replaceComicSans: false,

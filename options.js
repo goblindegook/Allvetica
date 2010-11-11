@@ -15,8 +15,9 @@ function initOptions () {
     } );
     
     var options = JSON.parse( localStorage.allvetica );
-    $('#replacement option').filter('[value="' + options.replacement + '"]').attr('selected', true);
     
+    $('#replacement option').filter('[value="' + options.replacement + '"]').attr('selected', true);
+
     $('#replace_arial')
         .attr('checked', options.replaceArial);
         
@@ -125,14 +126,11 @@ function isFontInstalled (font, monospace) {
     var targetFamily = (monospace) ? 'sans-serif' : 'monospace, monospace';
     // Why monospace twice? It's a bug in the rendering engine:
     // http://www.undermyhat.org/blog/2009/09/css-font-family-monospace-renders-inconsistently-in-firefox-and-chrome/
-
+    
     $('body').append('<div id="fontTest"></div>');
-    
-    $('#fontTest').append('<span id="ftTarget"></div>');
-    $('#fontTest').append('<span id="ftMatch"></div>');
-    
-    $('#ftTarget').append(document.createTextNode(targetString));
-    $('#ftMatch').append(document.createTextNode(targetString));
+
+    $('#fontTest').append('<span id="ftTarget">' + targetString + '</div>');
+    $('#fontTest').append('<span id="ftMatch">' + targetString + '</div>');
     
     $('#ftTarget').css('font-family', targetFamily);
     $('#ftMatch').css('font-family', font + ',' + targetFamily);
@@ -148,14 +146,4 @@ function isFontInstalled (font, monospace) {
     return (targetW != matchW || targetH != matchH);
 }
 
-// event handlers
 
-$(document).ready(function() {
-    initOptions();
-    
-    $('.setting')
-        .change(function() { saveOptions(); });
-        
-    $('#replacement_custom')
-        .keyup(function() { checkFont(); });
-});
