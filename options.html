@@ -8,7 +8,7 @@
     <script type="text/javascript" src="options.js"></script>
 </head>
 
-<body onLoad='initOptions();'>
+<body>
 <section class="options">
 
     <header>
@@ -22,16 +22,16 @@
         <legend>Font Replacement</legend>
         
         <section class="column-2">
-            <p><input type="checkbox" id="replace_arial" name="replace_arial" onChange="saveOptions();">
+            <p><input type="checkbox" class="setting" id="replace_arial" name="replace_arial">
                 <label for="replace_arial">Replace Arial</label></p>
                 
-            <p><input type="checkbox" id="replace_comic_sans" name="replace_comic_sans" onChange="saveOptions();">
+            <p><input type="checkbox" class="setting" id="replace_comic_sans" name="replace_comic_sans">
                 <label for="replace_comic_sans">Replace Comic Sans</label></p>
                 
-            <p><input type="checkbox" id="replace_marker_felt" name="replace_marker_felt" onChange="saveOptions();">
+            <p><input type="checkbox" class="setting" id="replace_marker_felt" name="replace_marker_felt">
                 <label for="replace_marker_felt">Replace Marker Felt</label></p>
                 
-            <p><input type="checkbox" id="replace_papyrus" name="replace_papyrus" onChange="saveOptions();">
+            <p><input type="checkbox" class="setting" id="replace_papyrus" name="replace_papyrus">
                 <label for="replace_papyrus">Replace Papyrus</label></p>
         </section>
         
@@ -39,7 +39,7 @@
 
         <section class="selection">
             <p><label for="replacement">Replace selected fonts using:</label>
-                <select id="replacement" name="replacement" onChange="saveOptions();">
+                <select class="setting" id="replacement" name="replacement">
                     <option>Helvetica</option>
                     <option>Helvetica Neue</option>
                     <option class="embeddable">FreeSans</option>
@@ -48,18 +48,16 @@
             </p>
         </section>
         <section class="selection" id="replacement-advanced">
-            <p><label for="replacement">Custom font:</label>
-                <input type="text" id="replacement_custom" name="replacement_custom" placeholder="Font name" onKeyUp="checkFont();" onChange="saveOptions();">
+            <p><label for="replacement_custom">Custom font:</label>
+                <input type="text" class="setting" id="replacement_custom" name="replacement_custom" placeholder="Font name">
             </p>
-            <div id="custom-font-sample">
-                <p class="sample">The quick brown fox jumps over the lazy dog.</p>
-            </div>
+            <p id="custom-font-sample"></p>
         </section>
     </fieldset>
     
     <fieldset>
         <legend>Text Rendering</legend>
-        <p><input type="checkbox" id="optimize_legibility" name="optimize_legibility" onChange="saveOptions();">
+        <p><input type="checkbox" class="setting" id="optimize_legibility" name="optimize_legibility">
             <label for="optimize_legibility">Optimize Legibility</label></p>
     </fieldset>
 

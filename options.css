@@ -79,13 +79,9 @@ header h1 {
 }
 
 #custom-font-sample {
-    margin-bottom: 8px;
-}
-
-#custom-font-sample .sample {
     width: 334px;
     padding: 4px 0;
-    margin: 0;
+    margin: 0 0 8px;
     overflow: hidden;
     text-overflow: ellipsis;
     font-size: 150%;

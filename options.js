@@ -96,22 +96,25 @@ function saveOptions () {
 function checkFont (saving) {
     var fontName = $('#replacement_custom').val();
     
-    if (fontName) {
-        var customFontInstalled = isFontInstalled( fontName, false );
+    var customFontInstalled = (fontName) ? isFontInstalled( fontName, false ) : false;
+    
+    if (customFontInstalled) {
+        $('#replacement_custom').removeClass('notfound');
+        if (saving) {
+            $('#custom-font-sample').html('The quick brown fox jumps over the lazy dog.');
+            $('#custom-font-sample').css('font-family', fontName);
+            $('#custom-font-sample').show('fast');
+            $('#warnings').hide('fast');
+        }
         
-        if (customFontInstalled) {
-            $('#replacement_custom').removeClass('notfound');
-            if (saving) {
-                $('#custom-font-sample .sample').css('font-family', fontName);
-                $('#custom-font-sample').show('fast');
-                $('#warnings').hide('fast');
-            }
-            
-        } else {
-            $('#replacement_custom').addClass('notfound');
-            if (saving) {
-                $('#custom-font-sample').hide('fast');
-                $('#warnings').html('The custom font you specified is not available.').show('fast');
+    } else {
+        $('#replacement_custom').addClass('notfound');
+        if (saving) {
+            $('#custom-font-sample').hide('fast');
+            if (fontName) {
+                $('#warnings')
+                    .html('The custom font you specified is not available.')
+                    .show('fast');
             }
         }
     }
@@ -144,3 +147,15 @@ function isFontInstalled (font, monospace) {
 
     return (targetW != matchW || targetH != matchH);
 }
+
+// event handlers
+
+$(document).ready(function() {
+    initOptions();
+    
+    $('.setting')
+        .change(function() { saveOptions(); });
+        
+    $('#replacement_custom')
+        .keyup(function() { checkFont(); });
+});
