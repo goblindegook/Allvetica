@@ -54,6 +54,7 @@ function saveOptions () {
         checkFont(true);
     } else {
         $('#replacement-advanced').hide('fast');
+        $('#warnings').hide('fast');
     }
     
     if (customReplacementFont && customFontInstalled) {
@@ -61,6 +62,7 @@ function saveOptions () {
         options.replacementCustomValid = true;
         
     } else if (customReplacementFont) {
+        // Invalid
         var previous = JSON.parse( localStorage.allvetica );
         options.replacementCustom = previous.replacementCustom;
         options.replacementCustomValid = true;
@@ -109,7 +111,7 @@ function checkFont (saving) {
             $('#replacement_custom').addClass('notfound');
             if (saving) {
                 $('#custom-font-sample').hide('fast');
-                $('#warnings').html('The custom font you defined is unavailable.').show('fast');
+                $('#warnings').html('The custom font you specified is not available.').show('fast');
             }
         }
     }

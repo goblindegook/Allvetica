@@ -54,6 +54,12 @@ header h1 {
     padding: 0;
 }
 
+.options fieldset .selection {
+    width: 334px;
+    padding: 0;
+    margin: 0;
+}
+
 .options fieldset .selection label {
     display: inline-block;
     width: 180px;
@@ -72,19 +78,13 @@ header h1 {
     width: 130px;
 }
 
-#replacement-advanced {
-    width: 334px;
-    padding: 0;
-    margin: 0;
-}
-
 #custom-font-sample {
     margin-bottom: 8px;
 }
 
 #custom-font-sample .sample {
     width: 334px;
-    padding: 0;
+    padding: 4px 0;
     margin: 0;
     overflow: hidden;
     text-overflow: ellipsis;
