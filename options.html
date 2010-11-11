@@ -43,8 +43,17 @@
                     <option>Helvetica</option>
                     <option>Helvetica Neue</option>
                     <option class="embeddable">FreeSans</option>
+                    <option class="custom" value="">Choose your own</option>
                 </select>
             </p>
+            <div id="replacement-advanced">
+                <p><label for="replacement">Custom font:</label>
+                    <input type="text" id="replacement_custom" name="replacement_custom" placeholder="Font name" onKeyUp="checkFont();" onChange="saveOptions();">
+                </p>
+                <div id="custom-font-sample">
+                    <p class="sample">The quick brown fox jumps over the lazy dog.</p>
+                </div>
+            </div>
         </section>
     </fieldset>
     

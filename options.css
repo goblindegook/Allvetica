@@ -12,6 +12,11 @@ body {
     -webkit-border-radius: 5px;
     display: none;
     background-color: #ffffe0;
+    width: 338px;
+}
+
+p {
+    cursor: default;
 }
 
 header,
@@ -52,11 +57,51 @@ header h1 {
 .options fieldset .selection label {
     display: inline-block;
     width: 180px;
-    text-align: left;
+    text-align: right;
+    padding-right: 6px;
 }
 
 .options fieldset .selection select {
     text-align: left;
+    max-width: 140px;
+}
+
+.options fieldset .selection input[type="text"] {
+    border: 1px solid #aaa;
+    padding: 2px 4px;
+    width: 130px;
+}
+
+#replacement-advanced {
+    width: 334px;
+    padding: 0;
+    margin: 0;
+}
+
+#custom-font-sample {
+    margin-bottom: 8px;
+}
+
+#custom-font-sample .sample {
+    width: 334px;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 150%;
+    white-space: nowrap;
+}
+
+#replacement_custom:focus {
+    background-color: #cfc;
+}
+
+#replacement_custom.notfound {
+    background-color: #ffffe0;
+}
+
+#replacement_custom.notfound:focus {
+    background-color: #fcc;
 }
 
 .disabled {
@@ -64,3 +109,14 @@ header h1 {
 }
 
 .column-2 { -webkit-column-count: 2; }
+
+/* font check */
+
+#fontTest {
+    visibility: hidden;
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    font-weight: bold;
+    font-size: 200px !important;
+}

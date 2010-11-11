@@ -3,7 +3,9 @@
 function initOptions () {
     $('#replacement option').each( function (i) {
         var fontName = $(this).val();
-        if (!$(this).hasClass('embeddable') && !isFontInstalled( fontName )) {
+        if (!$(this).hasClass('embeddable')
+            && !$(this).hasClass('custom')
+            && !isFontInstalled( fontName )) {
             $(this).attr('disabled', 'disabled');
             $('#warnings')
                 .html('Some font options may be unavailable in your system.')
@@ -13,16 +15,60 @@ function initOptions () {
     } );
     
     var options = JSON.parse( localStorage.allvetica );
-    $('#replacement option').filter('[value="' + options.replacement + '"]').attr('selected', true);    
-    $('#replace_arial').attr('checked', options.replaceArial);
-    $('#replace_comic_sans').attr('checked', options.replaceComicSans);
-    $('#replace_marker_felt').attr('checked', options.replaceMarkerFelt);
-    $('#replace_papyrus').attr('checked', options.replacePapyrus);
-    $('#optimize_legibility').attr('checked', options.optimizeLegibility);
+    $('#replacement option').filter('[value="' + options.replacement + '"]').attr('selected', true);
+    
+    $('#replace_arial')
+        .attr('checked', options.replaceArial);
+        
+    $('#replace_comic_sans')
+        .attr('checked', options.replaceComicSans);
+        
+    $('#replace_marker_felt')
+        .attr('checked', options.replaceMarkerFelt);
+        
+    $('#replace_papyrus')
+        .attr('checked', options.replacePapyrus);
+    
+    $('#optimize_legibility')
+        .attr('checked', options.optimizeLegibility);
+
+    $('#replacement_custom').val(options.replacement_custom);
+    
+    if ($('#replacement option:selected').hasClass('custom')) {
+        $('#replacement-advanced').show();
+        checkFont(true);
+    } else {
+        $('#replacement-advanced').hide();
+    }
 }
 
 function saveOptions () {
     var options = {};
+    
+    // custom replacement font
+    var customReplacementFont = $('#replacement_custom').val();
+    var customFontInstalled = isFontInstalled( customReplacementFont, false );
+    
+    if ($('#replacement option:selected').hasClass('custom')) {
+        $('#replacement-advanced').show('fast');
+        checkFont(true);
+    } else {
+        $('#replacement-advanced').hide('fast');
+    }
+    
+    if (customReplacementFont && customFontInstalled) {
+        options.replacement_custom = customReplacementFont;
+        options.replacement_custom_valid = true;
+        
+    } else if (customReplacementFont) {
+        var previous = JSON.parse( localStorage.allvetica );
+        options.replacement_custom = previous.replacement_custom;
+        options.replacement_custom_valid = true;
+
+    } else {
+        options.replacement_custom = '';
+        options.replacement_custom_valid = false;
+    }
 
     options.replaceArial
         = $('#replace_arial:checked').val() != null;
@@ -35,7 +81,7 @@ function saveOptions () {
 
     options.replacePapyrus
         = $('#replace_papyrus:checked').val() != null;
-        
+    
     options.replacement
         = $('#replacement option:selected').val();
     
@@ -43,6 +89,30 @@ function saveOptions () {
         = $('#optimize_legibility:checked').val() != null;
     
     localStorage.allvetica = JSON.stringify( options );
+}
+
+function checkFont (saving) {
+    var fontName = $('#replacement_custom').val();
+    
+    if (fontName) {
+        var customFontInstalled = isFontInstalled( fontName, false );
+        
+        if (customFontInstalled) {
+            $('#replacement_custom').removeClass('notfound');
+            if (saving) {
+                $('#custom-font-sample .sample').css('font-family', fontName);
+                $('#custom-font-sample').show('fast');
+                $('#warnings').hide('fast');
+            }
+            
+        } else {
+            $('#replacement_custom').addClass('notfound');
+            if (saving) {
+                $('#custom-font-sample').hide('fast');
+                $('#warnings').html('The custom font you defined is unavailable.').show('fast');
+            }
+        }
+    }
 }
 
 function isFontInstalled (font, monospace) {
@@ -53,13 +123,6 @@ function isFontInstalled (font, monospace) {
 
     $('body').append('<div id="fontTest"></div>');
     
-    $('#fontTest').css('visibility', 'hidden');
-    $('#fontTest').css('position', 'absolute');
-    $('#fontTest').css('left', '-9999px');
-    $('#fontTest').css('top', '0');
-    $('#fontTest').css('font-weight', 'bold');
-    $('#fontTest').css('font-size', '200px !important');
-    
     $('#fontTest').append('<span id="ftTarget"></div>');
     $('#fontTest').append('<span id="ftMatch"></div>');
     
@@ -67,7 +130,7 @@ function isFontInstalled (font, monospace) {
     $('#ftMatch').append(document.createTextNode(targetString));
     
     $('#ftTarget').css('font-family', targetFamily);
-    $('#ftMatch').css('font-family', font + ',' + targetFamily );
+    $('#ftMatch').css('font-family', font + ',' + targetFamily);
 
     var targetW = $('#ftTarget').width();
     var targetH = $('#ftTarget').height();

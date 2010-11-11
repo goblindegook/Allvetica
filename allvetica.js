@@ -11,9 +11,15 @@ chrome.extension.sendRequest(
         if (options.replaceMarkerFelt)  fonts.push("Marker Felt");
         if (options.replacePapyrus)     fonts.push("Papyrus");
         
-        if (fonts.length) {
+        var replacement = options.replacement;
+        
+        if (!replacement && options.replacement_custom_valid) {
+            replacement = options.replacement_custom;
+        }
+        
+        if (replacement && fonts.length) {
             var fontSearch = "[\\'\\\"]?(" + fonts.join('|') + ")[\\'\\\"]?";
-            replaceFont(new RegExp(fontSearch, "gi"), options.replacement);
+            replaceFont(new RegExp(fontSearch, "gi"), replacement);
         }
         
         if (options.optimizeLegibility)
