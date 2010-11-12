@@ -36,9 +36,11 @@ function initOptions () {
     $('#replacement_custom').val(options.replacementCustom);
     
     if ($('#replacement option:selected').hasClass('custom')) {
+        $('#preview').show();
         $('#replacement-advanced').show();
         checkFont(true);
     } else {
+        $('#preview').hide();
         $('#replacement-advanced').hide();
     }
 }
@@ -55,6 +57,7 @@ function saveOptions () {
         checkFont(true);
     } else {
         $('#replacement-advanced').hide('fast');
+        $('#preview').hide('fast');
         $('#warnings').hide('fast');
     }
     
@@ -102,21 +105,19 @@ function checkFont (saving) {
     if (customFontInstalled) {
         $('#replacement_custom').removeClass('notfound');
         if (saving) {
-            $('#custom-font-sample').html('The quick brown fox jumps over the lazy dog.');
-            $('#custom-font-sample').css('font-family', fontName);
-            $('#custom-font-sample').show('fast');
             $('#warnings').hide('fast');
+            $('#custom-font-sample').css('font-family', fontName);
+            $('#preview').show('fast');
         }
         
     } else {
         $('#replacement_custom').addClass('notfound');
         if (saving) {
-            $('#custom-font-sample').hide('fast');
-            if (fontName) {
-                $('#warnings')
-                    .html('The custom font you specified is not available.')
-                    .show('fast');
-            }
+            var warningMsg = (fontName)
+                ? 'The custom font you specified is not available.'
+                : 'You must specify a custom font.';
+            $('#warnings').html(warningMsg).show('fast');
+            $('#preview').hide('fast');
         }
     }
 }
