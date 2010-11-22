@@ -53,12 +53,12 @@ function saveOptions () {
     var customFontInstalled = isFontInstalled( customReplacementFont, false );
     
     if ($('#replacement option:selected').hasClass('custom')) {
-        $('#replacement-advanced').show('fast');
+        $('#replacement-advanced').slideDown('fast');
         checkFont(true);
     } else {
-        $('#replacement-advanced').hide('fast');
-        $('#preview').hide('fast');
-        $('#warnings').hide('fast');
+        $('#replacement-advanced').slideUp('fast');
+        $('#preview').slideUp('fast');
+        $('#warnings').slideUp('fast');
     }
     
     if (customReplacementFont && customFontInstalled) {
@@ -105,9 +105,9 @@ function checkFont (saving) {
     if (customFontInstalled) {
         $('#replacement_custom').removeClass('notfound');
         if (saving) {
-            $('#warnings').hide('fast');
+            $('#warnings').slideUp('fast');
             $('#custom-font-sample').css('font-family', fontName);
-            $('#preview').show('fast');
+            $('#preview').slideDown('fast');
         }
         
     } else {
@@ -116,8 +116,8 @@ function checkFont (saving) {
             var warningMsg = (fontName)
                 ? 'The custom font you specified is not available.'
                 : 'You must specify a custom font.';
-            $('#warnings').html(warningMsg).show('fast');
-            $('#preview').hide('fast');
+            $('#warnings').html(warningMsg).slideDown('fast');
+            $('#preview').slideUp('fast');
         }
     }
 }
