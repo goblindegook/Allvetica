@@ -7,8 +7,8 @@ chrome.extension.sendRequest(
         
         var fonts = [];
         if (options.replaceArial)       fonts.push("Arial");
-        if (options.replaceComicSans)   fonts.push("Comic Sans( MS| 2010)?");
-        if (options.replaceMarkerFelt)  fonts.push("Marker Felt");
+        if (options.replaceComicSans)   fonts.push("Comic\\s*Sans(\\s*MS|\\s*2010)?");
+        if (options.replaceMarkerFelt)  fonts.push("Marker\\s*Felt");
         if (options.replacePapyrus)     fonts.push("Papyrus");
         
         var replacement = options.replacement;
@@ -18,7 +18,7 @@ chrome.extension.sendRequest(
         }
         
         if (replacement && fonts.length) {
-            var fontSearch = "[\\'\\\"]?(" + fonts.join('|') + ")[\\'\\\"]?";
+            var fontSearch = "[\\'\\\"\\s]*(" + fonts.join('|') + ")[\\'\\\"\\s]*(?=,|$)";
             replaceFont(new RegExp(fontSearch, "gi"), replacement);
         }
         
