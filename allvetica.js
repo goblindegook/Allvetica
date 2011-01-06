@@ -7,7 +7,7 @@ chrome.extension.sendRequest(
         
         var fonts = [];
         if (options.replaceArial)       fonts.push("Arial");
-        if (options.replaceComicSans)   fonts.push("Comic\\s*Sans(\\s*MS|\\s*2010)?");
+        if (options.replaceComicSans)   fonts.push("Comic\\s*Sans\\s*(MS|2010)?");
         if (options.replaceMarkerFelt)  fonts.push("Marker\\s*Felt");
         if (options.replacePapyrus)     fonts.push("Papyrus");
         
