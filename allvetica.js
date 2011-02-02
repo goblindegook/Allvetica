@@ -30,18 +30,21 @@ chrome.extension.sendRequest(
 
 // Attempt to fix and reinject invalid CSS for more robust font replacement
 function fixInvalidStyles (fonts, replacement) {
+    var allStyles = '';
+    
     jQuery('head style').each( function (i, e) {
         var style = jQuery(this).html();
-        var invalidContent = new RegExp( '<!--|-->', 'g' );
+        var invalidContent = new RegExp( '<!--|-->|<\\w[^>]*>', 'g' );
         
         if (style.match( invalidContent )) {
             var toReplace = new RegExp("[\\'\\\"\\s]*(" + fonts.join('|') + ")[\\'\\\"\\s]*(?=,|)", "gi");
         
             style = style.replace( invalidContent, '' );
-            style = style.replace( toReplace, replacement );
-            jQuery('head').append('<style>' + style + '</style>');
+            allStyles += style.replace( toReplace, "'" + replacement + "'");
         }
     } );
+    
+    jQuery('head').append('<style type="text/css">' + allStyles + '</style>');
 }
 
 
