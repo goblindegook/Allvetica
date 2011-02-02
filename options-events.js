@@ -1,12 +1,12 @@
 // options-events.js: configuration panel event handlers
 
-$(document).ready(function() {
+jQuery(document).ready(function() {
     initOptions();
     
-    $('.setting')
+    jQuery('.setting')
         .change(function() { saveOptions(); });
         
-    $('#replacement_custom')
+    jQuery('#replacement_custom')
         .keyup(function() { checkFont(); });
     
 });

@@ -18,17 +18,37 @@ chrome.extension.sendRequest(
         }
         
         if (replacement && fonts.length) {
-            var fontSearch = "[\\'\\\"\\s]*(" + fonts.join('|') + ")[\\'\\\"\\s]*(?=,|$)";
-            replaceFont(new RegExp(fontSearch, "gi"), replacement);
+            fixInvalidStyles(fonts, replacement);
+            replaceFont(fonts, replacement);
         }
         
         if (options.optimizeLegibility)
-            $('body').css('text-rendering', 'optimizeLegibility');
+            jQuery('body').css('text-rendering', 'optimizeLegibility');
     }
 );
 
 
-function replaceFont (toReplace, replacement) {
+// Attempt to fix and reinject invalid CSS for more robust font replacement
+function fixInvalidStyles (fonts, replacement) {
+    jQuery('head style').each( function (i, e) {
+        var style = jQuery(this).html();
+        var invalidContent = new RegExp( '<!--|-->', 'g' );
+        
+        if (style.match( invalidContent )) {
+            var toReplace = new RegExp("[\\'\\\"\\s]*(" + fonts.join('|') + ")[\\'\\\"\\s]*(?=,|)", "gi");
+        
+            style = style.replace( invalidContent, '' );
+            style = style.replace( toReplace, replacement );
+            jQuery('head').append('<style>' + style + '</style>');
+        }
+    } );
+}
+
+
+function replaceFont (fonts, replacement) {
+
+    var fontSearch = "[\\'\\\"\\s]*(" + fonts.join('|') + ")[\\'\\\"\\s]*(?=,|$)";
+    var toReplace = new RegExp(fontSearch, "gi");
 
     // Adjust style sheets
     if (document.styleSheets) {
@@ -52,21 +72,21 @@ function replaceFont (toReplace, replacement) {
     }
     
     // Adjust inline styles
-    $('body').find('*').each(
+    jQuery('body').find('*').each(
         function (i) {
-            if ($(this).css('font-family').match(toReplace))
-                $(this).css('font-family', $(this).css('font-family').replace(toReplace, replacement));
+            if (jQuery(this).css('font-family').match(toReplace))
+                jQuery(this).css('font-family', jQuery(this).css('font-family').replace(toReplace, replacement));
             
-            if ($(this).css('font').match(toReplace))
-                $(this).css('font', $(this).css('font').replace(toReplace, replacement));
+            if (jQuery(this).css('font').match(toReplace))
+                jQuery(this).css('font', jQuery(this).css('font').replace(toReplace, replacement));
         }
     );
 
     // Adjust font tag properties
-    $('body').find('font').each(
+    jQuery('body').find('font').each(
         function (i) {
-            if ($(this).attr('face').match(toReplace))
-                $(this).attr('face', $(this).attr('face').replace(toReplace, replacement));
+            if (jQuery(this).attr('face').match(toReplace))
+                jQuery(this).attr('face', jQuery(this).attr('face').replace(toReplace, replacement));
         }
     );
     
