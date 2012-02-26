@@ -1,2 +1,3 @@
-
-/Allvetica.esproj
+*.bbprojectd
+*.esproj
+._*

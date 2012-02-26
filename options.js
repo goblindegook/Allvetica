@@ -5,7 +5,7 @@ function initOptions () {
         var fontName = jQuery(this).val();
         if (!jQuery(this).hasClass('embeddable')
             && !jQuery(this).hasClass('custom')
-            && !isFontInstalled( fontName )) {
+            && !isFontAvailable( fontName )) {
             jQuery(this).attr('disabled', 'disabled');
             jQuery('#warnings')
                 .html('Some font options may be unavailable in your system.')
@@ -50,7 +50,7 @@ function saveOptions () {
     
     // custom replacement font
     var customReplacementFont = jQuery('#replacement_custom').val();
-    var customFontInstalled = isFontInstalled( customReplacementFont, false );
+    var customFontInstalled = isFontAvailable( customReplacementFont );
     
     if (jQuery('#replacement option:selected').hasClass('custom')) {
         jQuery('#replacement-advanced').slideDown('fast');
@@ -100,7 +100,7 @@ function saveOptions () {
 function checkFont (saving) {
     var fontName = jQuery('#replacement_custom').val();
     
-    var customFontInstalled = (fontName) ? isFontInstalled( fontName, false ) : false;
+    var customFontInstalled = (fontName) ? isFontAvailable( fontName ) : false;
     
     if (customFontInstalled) {
         jQuery('#replacement_custom').removeClass('notfound');
@@ -122,29 +122,59 @@ function checkFont (saving) {
     }
 }
 
-function isFontInstalled (font, monospace) {
-    var targetString = '~mwMW';
-    var targetFamily = (monospace) ? 'sans-serif' : 'monospace, monospace';
-    // Why monospace twice? It's a bug in the rendering engine:
+function isFontAvailable (font) {
+    var testString  = '~iomwIOMW';
+    var containerId = 'is-font-available-container';
+    
+    var fontArray = font instanceof Array;
+    
+    if (!fontArray) {
+        font = [ font ];
+    }
+    
+    var fontAvailability = [];
+    
+    var containerSel = '#' + containerId;
+    var spanSel      = containerSel + ' span';
+        
+    var familySansSerif = 'sans-serif';
+    var familyMonospace = 'monospace, monospace';
+    // Why monospace twice? It's a bug in the Mozilla and Webkit rendering engines:
     // http://www.undermyhat.org/blog/2009/09/css-font-family-monospace-renders-inconsistently-in-firefox-and-chrome/
-    
-    jQuery('body').append('<div id="fontTest"></div>');
 
-    jQuery('#fontTest').append('<span id="ftTarget">' + targetString + '</div>');
-    jQuery('#fontTest').append('<span id="ftMatch">' + targetString + '</div>');
+    // DOM:
+    $('body').append('<div id="' + containerId + '"></div>');
+    $(containerSel).append('<span></span>');
+    $(spanSel).append(document.createTextNode(testString));
     
-    jQuery('#ftTarget').css('font-family', targetFamily);
-    jQuery('#ftMatch').css('font-family', font + ',' + targetFamily);
-
-    var targetW = jQuery('#ftTarget').width();
-    var targetH = jQuery('#ftTarget').height();
+    // CSS:
+    $(containerSel).css('visibility', 'hidden');
+    $(containerSel).css('position', 'absolute');
+    $(containerSel).css('left', '-9999px');
+    $(containerSel).css('top', '0');
+    $(containerSel).css('font-weight', 'bold');
+    $(containerSel).css('font-size', '200px !important');
     
-    var matchW  = jQuery('#ftMatch').width();
-    var matchH  = jQuery('#ftMatch').height();
+    jQuery.each( font, function (i, v) {
+        $(spanSel).css('font-family', v + ',' + familyMonospace );
+        var monospaceFallbackWidth = $(spanSel).width();
+        var monospaceFallbackHeight = $(spanSel).height();
+        
+        $(spanSel).css('font-family', v + ',' + familySansSerif );
+        var sansSerifFallbackWidth = $(spanSel).width();
+        var sansSerifFallbackHeight = $(spanSel).height();
+        
+        fontAvailability[i] = true
+            && monospaceFallbackWidth == sansSerifFallbackWidth
+            && monospaceFallbackHeight == sansSerifFallbackHeight;
+    } );
     
-    jQuery('#fontTest').remove();
-
-    return (targetW != matchW || targetH != matchH);
+    $(containerSel).remove();
+    
+    if (!fontArray && fontAvailability.length == 1) {
+        fontAvailability = fontAvailability[0];
+    }
+    
+    return fontAvailability;
 }
-
 
