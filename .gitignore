@@ -1,3 +1,6 @@
-*.bbprojectd
-*.esproj
-._*
+node_modules
+temp
+.tmp
+dist
+.sass-cache
+app/bower_components
